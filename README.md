@@ -15,8 +15,8 @@ control your Nintendo Switch using a pro micro
 
 ## installation
 
-```bash
-sudo apt install avrdude gcc-avr avr-libc dfu-programmer
+```
+Working on Windows Instructions
 ```
 
 ## assembly
@@ -69,7 +69,7 @@ sudo avrdude -v -patmega32u4 -cavr109 -P/dev/ttyACM0 -Uflash:w:output.hex
 use the appropriate `MCU` and serial port for your board, the pro micro uses
 `atmega32u4` and `/dev/ttyACM0`
 
-## usage
+## Usage
 
 to use the controller:
 - start the game you want to play
@@ -80,42 +80,6 @@ to use the controller:
   the game)
 
 at this point, you can control the controller using uart
-
-commands are single-byte ascii characters sent over 9600 baud serial.
-
-this is the current list of commands:
-
-```
-V: enable verbose mode (microcontroller will reply with `revc: _`)
-v: disable verbose mode
-
-!: enable output on pin 9 (buzzer)
-.: disable output on pin 9
-
-0: empty state (no buttons pressed)
-A: A is pressed
-B: B is pressed
-X: X is pressed
-Y: Y is pressed
-H: Home is pressed
-+: + is pressed
--: - is pressed
-L: left trigger is pressed
-R: right trigger is pressed
-l: ZL is pressed
-r: ZR is pressed
-
-directions:
- LEFT STICK            RIGHT STICK
-
-      w                     u
-   q     e               y     i
-      ║                     ║
-a  ═══╬═══  d         h  ═══╬═══  k
-      ║                     ║
-   z     c               n     m
-      s                     j
-```
 
 ## thanks
 
