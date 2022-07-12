@@ -1,8 +1,8 @@
-# nintendo switch controller arduino
+# Nintendo switch controller arduino
 
 control your Nintendo Switch using a pro micro
 
-## requirements
+## Requirements
 
 - [pro micro] (or compatible)
 - [ftdi usb to uart] (or other uart device)
@@ -13,13 +13,13 @@ control your Nintendo Switch using a pro micro
 [ftdi usb to uart]: https://amzn.to/3dRWML0
 [micro usb]: https://amzn.to/2NVK4ll
 
-## installation
+## Installation
 
 ```
 Working on Windows Instructions
 ```
 
-## assembly
+## Assembly
 
 the assembly is fairly straightforward, here is a rough diagram of the parts
 and how they will be hooked up when operating
@@ -47,7 +47,7 @@ my assembly (I have a button from rst to gnd to help flashing)
 
 ![](https://user-images.githubusercontent.com/1810591/114293095-2ab8a980-9a48-11eb-9b35-290d58786701.jpg)
 
-## building
+## Building
 
 ```bash
 make MCU=atmega32u4
@@ -55,7 +55,7 @@ make MCU=atmega32u4
 
 use the appropriate `MCU` for your board, the pro micro uses `atmega32u4`
 
-## flashing
+## Flashing
 
 you have to be quick with this!
 
@@ -81,7 +81,7 @@ to use the controller:
 
 at this point, you can control the controller using uart
 
-## thanks
+## Thanks
 
 Thanks to Shiny Quagsire for his [Splatoon post printer](https://github.com/shinyquagsire23/Switch-Fightstick) and progmem for his [original discovery](https://github.com/progmem/Switch-Fightstick).
 Also thanks to bertrandom for his [snowball thrower](https://github.com/bertrandom/snowball-thrower) and all the modifications.
