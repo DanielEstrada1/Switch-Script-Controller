@@ -1,17 +1,32 @@
-# Nintendo switch controller arduino
+# Nintendo Switch Arduino Controller
 
-control your Nintendo Switch using a pro micro
+Control your Nintendo Switch using a pro micro
+
+Most of this readme is the same as [asottile's](https://github.com/asottile/switch-microcontroller) readme with a few changes.
 
 ## Requirements
 
-- [pro micro] (or compatible)
-- [ftdi usb to uart] (or other uart device)
+- [pro micro] (or compatible) *Note you might want to find a version with the pins pre soldered if you are not able to solder them yourself
+- [ftdi usb to uart] (or other uart device) *Pins need to be soldered for this one as well
 - usb cables (both use [micro usb])
-- wires
+- wires (can use dupont wires or shorter jumper wires on a breadboard)
+- breadboard to assemble everthing on
+
+The following aren't necessary but useful depending on how you want to set up the arduino.
+Each link is what I used for my setup
+- [button] (for making flashing easier)
+- [buzzer] (used for alerts like when the script finishes)
+- [USB C to A Adapter] (used for connecting the pro micro to the switch in handheld mode)
 
 [pro micro]: https://amzn.to/3rpb36r
 [ftdi usb to uart]: https://amzn.to/3dRWML0
 [micro usb]: https://amzn.to/2NVK4ll
+[button]: https://a.co/d/ckQkAc4
+[buzzer]: https://a.co/d/fZ3ZLA3
+[USB C to A Adapter]: https://a.co/d/8hI48IK
+
+
+
 
 ## Installation
 
@@ -20,8 +35,10 @@ Working on Windows Instructions
 ```
 
 ## Assembly
+For a video example of how to set up the board with dupont wires watch
+[aosittle's video](https://youtu.be/chvgQUX7QaI) on youtube
 
-the assembly is fairly straightforward, here is a rough diagram of the parts
+The assembly is fairly straightforward, here is a rough diagram of the parts
 and how they will be hooked up when operating
 
 ```
@@ -63,25 +80,27 @@ you have to be quick with this!
 - short `rst` to `gnd` twice in quick succession
 
 ```bash
-sudo avrdude -v -patmega32u4 -cavr109 -P/dev/ttyACM0 -Uflash:w:output.hex
+Working on Windows Instructions
 ```
 
-use the appropriate `MCU` and serial port for your board, the pro micro uses
+Use the appropriate `MCU` and serial port for your board, the pro micro uses
 `atmega32u4` and `/dev/ttyACM0`
 
 ## Usage
 
-to use the controller:
-- start the game you want to play
-- press home
-- navigate to controllers
-- change order/grip
-- at this point, connect the controller (it should register itself and start
-  the game)
+To use the controller:
+- Start the game you want to play
+- Connect the controller
 
-at this point, you can control the controller using uart
+After connecting the controller will be ready to receive inputs over serial.
+
+Commands are sent over 9600 baud serial as single bytes and rebuilt on the arudino side.
+
+
+I need to explain some behavior you will see when you connect the controller. Not every game displays the connecting of a controller the same. Some games such as Breath of the Wild and Celeste will display a prompt when connecting a new controller. Other games such as Pokemon will not display this screen. In most cases even without the prompt appearing the controller will be connected and ready to accept inputs over serial. If you have any issues you could always ensure you disconnect your controllers before plugging in the arduino and it'll work.
 
 ## Thanks
 
+Thanks to Asottile for his [switch-microcontroller](https://github.com/asottile/switch-microcontroller) where I learned how to physically setup the project and how to communicate over serial with the pro micro
 Thanks to Shiny Quagsire for his [Splatoon post printer](https://github.com/shinyquagsire23/Switch-Fightstick) and progmem for his [original discovery](https://github.com/progmem/Switch-Fightstick).
-Also thanks to bertrandom for his [snowball thrower](https://github.com/bertrandom/snowball-thrower) and all the modifications.
+Thanks to bertrandom for his [snowball thrower](https://github.com/bertrandom/snowball-thrower) and modifications to the original project which helped me set up the start up script to connect the controller to the switch faster.
