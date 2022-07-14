@@ -31,6 +31,10 @@ typedef struct {
 } command;
 
 static const command step[] = {
+	//This set of instructions connect the control to the switch when it's
+	//connect to it. Just plug it in while you have your game open and it should
+	//connect. You might have to manually disconnect other controls however before you
+	//connect the arduino
 	{0, 50},  // Do Nothing
 	{48, 5},  // Press Triggers
 	{0, 50},  // Do Nothing
@@ -40,6 +44,24 @@ static const command step[] = {
 	{0, 50},  // Do Nothing
 	{4, 5},	  // Press A
 	{0, 250}, // Do Nothing
+
+
+	//Uncomment these lines if you want to connect the controller using
+	//asottile's method of going to the change controller/ grip order
+	// Setup controller
+	//{0 ,50},
+	//{48, 5},
+	//{0, 50},
+	//{48, 5},
+	//{0, 50},
+	//{4, 5},
+	//{0, 50},
+
+	// Go into game
+	//{4096, 5},
+	//{0, 50},
+	//{4, 5},
+	//{0, 50},
 };
 #define ECHOES 2
 int echoes = 0;
