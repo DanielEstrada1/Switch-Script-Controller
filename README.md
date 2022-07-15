@@ -2,7 +2,17 @@
 
 Control your Nintendo Switch using a pro micro
 
-Most of this readme is the same as [asottile's](https://github.com/asottile/switch-microcontroller) readme with a few changes.
+# Differences to asottile's switch microcontroller
+Sections of this readme is the same as [asottile's](https://github.com/asottile/switch-microcontroller) readme with some changes.
+
+Asottile's project sends commands as single-byte ascii characters and executes them as they are received. While this method works it would require the user to create a case for every set of instructions you would want.
+
+I have changed the code to use two bytes to build more complex instructions. This allows us to remove the need to use individual cases for every command. Now using the two bytes together we can update our buttons, sticks, or dpad. 
+
+This update works by checking sets of 2 bits to determine what kind of data the controller has received and update our commands appropriately.
+
+I have also created a GUI using PyQt to allow for an easier time creating, editing, and testing scripts. You can also use the included python script to run each script from command line without the need of using the gui.
+
 
 ## Requirements
 
@@ -28,8 +38,19 @@ Each link is what I used for my setup
 
 
 
-## Installation
-
+## Installation and Compiling the project
+Since I use windows the following instructions are for windows users and show how I got the project working.
+What you will need
+- Git [Instructions](https://github.com/git-guides/install-git)
+- Avrdude [Download](https://github.com/mariusgreuel/avrdude/releases)
+- GNU Make (To run the makefile)
+- The latest Atmel GNU toolchain [Download](https://www.microchip.com/en-us/tools-resources/develop/microchip-studio/gcc-compilers)
+- Python3 [Download](https://www.python.org/downloads/)
+- Latest version of PyQt (used for the GUI) (Can be installed after installing python using pip)
+```
+pip install PyQt6
+```
+- Arduino IDE to find path for avrdude to flash the arduino [Download](https://www.arduino.cc/en/software)
 ```
 Working on Windows Instructions
 ```
@@ -94,7 +115,7 @@ To use the controller:
 
 After connecting the controller will be ready to receive inputs over serial.
 
-Commands are sent over 9600 baud serial as single bytes and rebuilt on the arudino side.
+Commands are sent over 9600 baud serial as a series of bytes and rebuilt on the arudino side.
 
 
 I need to explain some behavior you will see when you connect the controller. Not every game displays the connecting of a controller the same. Some games such as Breath of the Wild and Celeste will display a prompt when connecting a new controller. Other games such as Pokemon will not display this screen. In most cases even without the prompt appearing the controller will be connected and ready to accept inputs over serial. If you have any issues you could always ensure you disconnect your controllers before plugging in the arduino and it'll work.
@@ -105,4 +126,4 @@ Thanks to Asottile for his [switch-microcontroller](https://github.com/asottile/
 
 Thanks to Shiny Quagsire for his [Splatoon post printer](https://github.com/shinyquagsire23/Switch-Fightstick) and progmem for his [original discovery](https://github.com/progmem/Switch-Fightstick).
 
-Thanks to bertrandom for his [snowball thrower](https://github.com/bertrandom/snowball-thrower) and modifications to the original project which helped me set up the start up script to connect the controller to the switch faster.
+Thanks to bertrandom for his [snowball thrower](https://github.com/bertrandom/snowball-thrower) and modifications to the original project which helped me set up the start up script to connect the controller to the switch faster and for adding lufa as a submodule and including the git command as well.
