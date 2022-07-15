@@ -31,10 +31,9 @@ typedef struct {
 } command;
 
 static const command step[] = {
-	//This set of instructions connect the control to the switch when it's
-	//connect to it. Just plug it in while you have your game open and it should
-	//connect. You might have to manually disconnect other controls however before you
-	//connect the arduino
+	//This set of instructions will connect the controller once you plug it in while 
+	//you're in game. In case there is an issue you can disconnect all other controllers
+	//before plugging in the arduino. I haven't had an issue yet however
 	{0, 50},  // Do Nothing
 	{48, 5},  // Press Triggers
 	{0, 50},  // Do Nothing
@@ -91,8 +90,6 @@ int main(void) {
 		}
 	}
 
-	//  11101010 high = 234
-	//  01100000 low = 96
 	//  Reset our character to be a null character and create a dummy int
 	//  to pass into our functions.
 	//  We make a dummy variable because we only handle duration during our synching step
