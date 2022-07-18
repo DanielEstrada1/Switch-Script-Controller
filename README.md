@@ -206,10 +206,11 @@ Then head down to Ports(COM & LPT) and plug in your arduino to your computer. Yo
 For me the port I need to specify to flash the Arduino is `COM8`
 
 If the bootloader is not showing up you will ahve to short `rst` and `gnd` to reset the arduino into it's bootloader.
+
 In order to flash our arduino with our program you will have to perform the following steps quickly
 - connect the pro micro to your computer
 - short `rst` to `gnd` twice in quick succession
-- then hit enter with this command in your terminal
+- then hit enter with this command in your terminal (the terminal should be opened to our project folder)
 ```
 avrdude -v -cavr109 -patmega32u4 -PCOM_ -b57600 -D -Uflash:w:Joystick.hex:i
 ```
