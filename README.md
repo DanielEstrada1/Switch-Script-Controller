@@ -11,6 +11,52 @@ I have changed the code to use two bytes to build more complex instructions. Thi
 
 This update works by checking sets of 2 bits to determine what kind of data the controller has received and update our commands appropriately.
 
+The way each command is structured is like so
+```
+ |--- The first two bits are always used to determine how to use the remaining 14 bits
+ V
+|00|00 0000 0000 0000| = Buttons
+    ^---These 14 bits represent each button
+|00|00 0000|0000 0000| = Left/Right Stick X/Y values
+        ^      ^--- Since each stick can only be 0-255 we only use two bytes or the last 8 bits
+        |---We use bits 8 and 9 to tell us if we are LX,LY,RX,or RY values
+|00|00 0000 0000|0000| = Dpad Direction
+    ^             ^---Dpad is represented with only one byte or the last 4 bits
+    |---We do not use these 10 bits
+```
+This method allows us to build more complex instruction without needing to make cases for each input we want and send less data through the serial. This is all handled within Joystick.c where I have included comments to explain what my code does.
+
+
+If you want to execute a Shield Surf in Breath of the Wild the script will look like this
+```
+2,16460,33024,0.2
+```
+The first number 2 is used to tell the arduino that it is receiving two inputs
+16460 in binary is
+```
+0100 0000 0100 1100
+```
+The first two bits 01 tell the arduino we are pressing buttons
+the following 14 bits represent each button
+from left to right we have Capture, Home, Right Click, Left Click, +, -, ZR, ZL, R, L, X, A, B,Y
+```
+00 0000 0100 1100
+```
+these 14 bits tell us that we are pressing the A,X, and ZL buttons
+The next number 33024 is broken in a similar pattern
+```
+1000 0001 0000 0000
+```
+This time the first two bits 10 tell us we are updating a stick value
+since sticks only need two bytes our number is broken up into 
+```
+10 000001 00000000
+```
+where using bits 8 and 9 tells us we are a left stick Y value
+and the final 2 bytes 0000 0000 tell us to update our Y value from neutral to 0
+
+the very last number 0.2 is a duration that our program will wait before sending the next instruction to the arduino
+
 I have also created a GUI using PyQt to allow for an easier time creating, editing, and testing scripts. You can also use the included python script to run each script from command line without the need of using the gui.
 
 
