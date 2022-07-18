@@ -19,13 +19,13 @@ I have also created a GUI using PyQt to allow for an easier time creating, editi
 - [pro micro] (or compatible) *Note you might want to find a version with the pins pre soldered if you are not able to solder them yourself
 - [ftdi usb to uart] (or other uart device) *Pins need to be soldered for this one as well
 - usb cables (both use [micro usb])
-- wires (can use dupont wires or shorter jumper wires on a breadboard)
-- breadboard to assemble everthing on
+- wires (can use dupont wires or shorter jumper wires on a breadboard) I used [these](https://a.co/d/g2ouoll) and [these](https://a.co/d/6faDum1) but you only need one. I'd recommend the shorter jumper cables for the breadboard to keep things clean
+- breadboard to assemble everthing on. I used [these](https://a.co/d/7jASLaS)
 
 The following aren't necessary but useful depending on how you want to set up the arduino.
 Each link is what I used for my setup
 - [button] (for making flashing easier)
-- [buzzer] (used for alerts like when the script finishes)
+- [buzzer] (used for alerts like when the script finishes however at the moment there is no code to activate it)
 - [USB C to A Adapter] (used for connecting the pro micro to the switch in handheld mode)
 
 [pro micro]: https://amzn.to/3rpb36r
@@ -66,7 +66,7 @@ This is how I set up my board.
 
 
 ## Installation and Compiling the project
-Since I use windows the following instructions are for windows users and show how I got the project working.
+Since I use Windows the following instructions are for Windows users and show how I got the project working.
 What you will need
 - Git
 - Avrdude
@@ -93,7 +93,7 @@ You will only need to install Python/PyQt if you want to run the GUI from the py
     ```
 3. Download Avrdude and Atemel GNU toolchain
     
-    Download Avrdude for windows from this [github](https://github.com/mariusgreuel/avrdude/releases) as well as the AVR 8-Bit Toolchain (Windows) from Atmel's website [here](https://www.microchip.com/en-us/tools-resources/develop/microchip-studio/gcc-compilers).
+    Download Avrdude for Windows from this [github](https://github.com/mariusgreuel/avrdude/releases) as well as the AVR 8-Bit Toolchain (Windows) from Atmel's website [here](https://www.microchip.com/en-us/tools-resources/develop/microchip-studio/gcc-compilers).
     After unzipping both of these files we will then move them to the C:\Program Files folder. Make sure that you move the folder within the avr8-gnu-toolchain-3.7.... folder you downloaded from Atmel. I took the time to rename this long file to avr8-gnu-toolchain.
 4. Updating Environment Variables to include paths to AVRDUDE and Atmel tool chain
     
@@ -111,6 +111,32 @@ You will only need to install Python/PyQt if you want to run the GUI from the py
     you should see something like this
     
     ![246996910 96_image](https://user-images.githubusercontent.com/36652048/179445726-e025de01-df28-4d2a-96ca-bb85abb33c6c.png)
+6. Optional Steps
+    At this point you can move on if you are planning to only use the included scriptGUI.exe. If you are planning to use the python version of the gui, or the python file to run scripts from the command line then you will need to
+    1. Install [python](https://www.python.org/downloads/) 
+    2. Install PyQt (Use this after install python)
+        ```
+        pip install pyqt6
+        ```
+    3. Install pyserial
+        ```
+        pip install pyserial
+        or
+        python -m pip install pyserial
+        ```
+    After installing these you can run the python file for the gui with
+    ```
+    python3 -m scriptGui
+    ```
+    The included runScript.py will run a script of your choice from the commandline
+    ```
+    python3 -m runScript --file x --port x --count x 
+    ```
+    File is the name of the specific file you want to run.
+    
+    Port is what port to connect to.
+    
+    Count is how many times you want to repeat the script
 
 # Building
 Finally after all that work we can build our project. Open up a terminal in our project folder and run this command.
