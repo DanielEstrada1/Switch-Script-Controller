@@ -226,6 +226,11 @@ To be able to send data to the Arduino we will have to find the correct port for
 
 For me this would be `COM7` but could be different for you.
 
+Make sure you turn on Pro Controller Wired Communication in your System Settings under Controllers and Sensors so the Switch will allow the Arduino to connect.
+
+<img width="700" src ="https://user-images.githubusercontent.com/36652048/179632920-fabf20f6-52d9-406e-ad0e-2c665624f480.JPG">
+
+
 To use the controller:
 - Start the game you want to play
 - Connect the controller
