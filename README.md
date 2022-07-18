@@ -241,7 +241,7 @@ When connecting the arduino to the switch you may or may not see a connecting sc
 
 ![test](https://user-images.githubusercontent.com/36652048/179449842-f3eeb687-27a0-49c0-aee9-dd8f612277a0.gif)
 
-Also in case you would like to be sure that the Arduino has connected to the switch you can edit the step[] in Joystick.c to use [asottile's](https://github.com/asottile/switch-microcontroller) method instead. All you have to do is switch which code is commented out in that array and it will work. 
+Also in case you would like to be sure that the Arduino has connected to the switch you can edit the step[] in Joystick.c to use [asottile's](https://github.com/asottile/switch-microcontroller) method instead. All you have to do is switch which code is commented out in that array and it will work. His method has you go back to the home page, press controllers, press change order/grip, then plug in the controller. This method takes a little bit more time but guarantees that the arduino is connected and ready to receive inputs in the game of your choice.
 
 ![test](https://user-images.githubusercontent.com/36652048/179635046-ae8ad4a7-8988-44f2-8710-de0a0b3cecc9.gif)
 
