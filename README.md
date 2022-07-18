@@ -188,7 +188,7 @@ You will only need to install Python/PyQt if you want to run the GUI from the py
 Finally after all that work we can build our project. Open up a terminal in our project folder and run this command.
 Make sure to use the proper `MCU` for your board. The pro micro we are using uses `atmega32u4`
 ```
-make MCU = atmega32u4
+make MCU=atmega32u4
 ```
 
 # Flashing
@@ -240,6 +240,10 @@ After connecting to the switch the controller will be ready to receive input
 When connecting the arduino to the switch you may or may not see a connecting screen. Games such as Breath of The Wild and Celeste display the connecting screen while some games like Pokemon do not. In most cases you will be able to start sending commands but in the event it is not responding then make sure you disconnect your controllers before plugging in the arduino.
 
 ![test](https://user-images.githubusercontent.com/36652048/179449842-f3eeb687-27a0-49c0-aee9-dd8f612277a0.gif)
+
+Also in case you would like to be sure that the Arduino has connected to the switch you can edit the step[] in Joystick.c to use [asottile's](https://github.com/asottile/switch-microcontroller) method instead. All you have to do is switch which code is commented out in that array and it will work. 
+
+![test](https://user-images.githubusercontent.com/36652048/179635046-ae8ad4a7-8988-44f2-8710-de0a0b3cecc9.gif)
 
 Before you start to make your own scripts it is important to understand how the Arduino is working. When the arduino receives a new instruction it will update itself according to the data received. If it receives the signal to press the A button it will press the A button. It will continue to hold the A button until it receives a new instruction where it will update itself accordingly. This is equivalent to saying that to register an A button press you have to send one instruction to hold the button and a second instruction to release the button.
 
