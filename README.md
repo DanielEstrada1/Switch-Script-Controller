@@ -232,6 +232,7 @@ The left side of the Gui is used to select what buttons you want to press, how f
     - Errors will be shown in the list on the right side of the GUI
 11. Stop Script
     - Pressing this button will stop running the current script and send an instruction to the arduino to reset itself to netural where no input is pressed
+
 Here is an example of a simple Shield Surf Script for Breath of The Wild
 
 ![Screenshot 2022-07-18 144954](https://user-images.githubusercontent.com/36652048/179623485-cbd6f6b5-9bcb-4b98-84fd-683bb25b2772.JPG)
